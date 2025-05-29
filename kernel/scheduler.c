@@ -16,3 +16,11 @@ void schedule(void) {
     current_task = task_queue;
     // Переключение контекста
 }
+
+void init_scheduler() {
+    // Заглушка: Инициализация очереди задач
+}
+
+void start_scheduler() {
+    // Заглушка: Запуск задач
+}
