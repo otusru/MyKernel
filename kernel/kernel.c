@@ -1,3 +1,5 @@
+// Ядро 
+
 #include "kernel.h"
 #include "memory.h"
 #include "scheduler.h"
