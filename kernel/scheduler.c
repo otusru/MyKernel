@@ -1,3 +1,4 @@
+// Простая очередь задач (кооперативная многозадачность)
 // kernel/scheduler.c
 
 #include "scheduler.h"
