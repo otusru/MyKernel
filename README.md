@@ -105,4 +105,29 @@ scheduler.h: Прототипы функций планировщика.
 interrupt.h: Прототипы функций обработки прерываний.
 io.h: Прототипы функций ввода/вывода.
 
+---
+
+
+boot/boot.asm // Ассемблерный код загрузчика
+boot/boot.h // Заголовочные файлы загрузчика
+boot/linker.ld // Скрипт линковщика
+kernel/kernel.c // Главная функция ядра
+kernel/memory.c // Управление памятью
+kernel/scheduler.c // Планировщик задач
+kernel/interrupt.c // Обработка прерываний
+kernel/keyboard.c // Драйвер клавиатуры
+kernel/timer.c // Драйвер таймера
+lib/string.c // Строковые операции
+lib/memory.c // Операции с памятью
+include/kernel.h // Основные определения
+include/memory.h // Заголовочные файлы управления памятью
+include/scheduler.h // Заголовочные файлы планировщика
+include/interrupt.h // Заголовочные файлы обработки прерываний
+include/io.h // Ввод/вывод
+Makefile // Файл сборки
+README.md // Документация проекта
+
+AMD Ryzen 9 8945HS w/ Radeon 780M Graphics
+Базовая скорость: 4,00 ГГц
+
 ```
