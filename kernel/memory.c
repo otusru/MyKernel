@@ -8,7 +8,7 @@ void init_memory() {
 }
 
 */
-
+// Управление динамической памятью (упрощённый kmalloc)
 // kernel/memory.c
 
 #include "memory.h"
