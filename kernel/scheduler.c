@@ -1,14 +1,16 @@
+// kernel/scheduler.c
+
 #include "scheduler.h"
 
-#define MAX_TASKS 10
+#define MAX_TASKS 8
 
 typedef struct {
     int active;
     void (*func)(void);
 } task_t;
 
-task_t tasks[MAX_TASKS];
-int current_task = 0;
+static task_t tasks[MAX_TASKS];
+static int current_task = 0;
 
 void init_scheduler() {
     for (int i = 0; i < MAX_TASKS; i++) {
@@ -29,7 +31,7 @@ void add_task(void (*func)(void)) {
 
 void start_scheduler() {
     while (1) {
-        if (tasks[current_task].active) {
+        if (tasks[current_task].active && tasks[current_task].func) {
             tasks[current_task].func();
         }
         current_task = (current_task + 1) % MAX_TASKS;
