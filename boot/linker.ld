@@ -1,31 +1,25 @@
-// Скрипт линковки
-
+/* boot/linker.ld — Линкует ядро с поддержкой Multiboot */
 ENTRY(_start)
 
 SECTIONS
 {
-    . = 1M;
+    . = 1M; /* Стартуем с 1 МБ */
 
-    .text :
-    {
-        *(.multiboot)
-        *(.text)
+    .text : {
+        *(.multiboot)   /* Заголовок GRUB */
+        *(.text*)
     }
 
-    .rodata :
-    {
+    .rodata : {
         *(.rodata*)
     }
 
-    .data :
-    {
+    .data : {
         *(.data)
     }
 
-    .bss :
-    {
+    .bss : {
         *(.bss)
         *(COMMON)
     }
 }
-
