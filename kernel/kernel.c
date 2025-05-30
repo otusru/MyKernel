@@ -1,24 +1,38 @@
 // Ядро 
+// kernel/kernel.c
 
 #include "kernel.h"
-#include "memory.h"
-#include "scheduler.h"
-#include "interrupt.h"
-#include "keyboard.h"
 #include "timer.h"
+#include "keyboard.h"
+#include "scheduler.h"
+#include "memory.h"
+#include "interrupt.h"
+#include "io.h"
 
-void kernel_main(void) {
-    // Инициализация подсистем
-    init_memory();
-    init_interrupts();
-    init_scheduler();
-    init_keyboard();
-    init_timer();
+// Простейшая задача для планировщика
+void test_task() {
+    while (1) {
+        // Имитация работы: печать символа или задержка
+        outb(0xE9, 'T'); // Вывод в Bochs/QEMU debug порт
+    }
+}
 
-    // Создание задач
-    create_task(task1);
-    create_task(task2);
+void kernel_main() {
+    // Инициализация базовых подсистем
+    init_memory();       // Подсистема динамической памяти (kmalloc/kfree)
+    init_interrupts();   // IDT, PIC
+    init_timer();        // Программируемый таймер (PIT)
+    init_keyboard();     // Простейший драйвер клавиатуры
+    init_scheduler();    // Очередь задач
 
-    // Запуск планировщика
+    // Добавляем тестовую задачу в очередь планировщика
+    add_task(test_task);
+
+    // Запускаем планировщик задач (бесконечный цикл)
     start_scheduler();
+
+    // Если вдруг выходим — просто повисаем
+    while (1) {
+        __asm__ volatile ("hlt");
+    }
 }
